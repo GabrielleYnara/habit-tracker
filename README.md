@@ -25,3 +25,6 @@ Java, OOP, and Spring Boot practice.
 ## Planning
 
 ## Installation Instructions
+
+## Acknowledgments
+This project was developed as part of the Software Engineering Immersive program by General Assembly. It serves as a practice project to apply and reinforce skills in Java, Object-Oriented Programming, and Spring Boot.
