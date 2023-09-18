@@ -1,4 +1,4 @@
-# sprintboot-mini-project
+# Habit Tracker mini-project
 Java, OOP, and Spring Boot practice.
 
 ## Tools and Technologies
