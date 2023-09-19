@@ -1,23 +1,43 @@
 package com.example.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "habits")
 public class Habit {
+    @Id //Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate sequence of unused values
+    @Column
     private Long Id;
+    @Column
     private String name;
+    @Column
     private String trigger;
+    @Column
     private String outcome;
+    @Column
     private String routine;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @JsonIgnore //prevents stack overflow
+    @ManyToOne //Many habits belong to the same category
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Habit() {
     }
 
-    public Habit(Long id, String name, String trigger, String outcome, String routine) {
+    public Habit(Long id, String name, String trigger, String outcome, String routine, Category category) {
         Id = id;
         this.name = name;
         this.trigger = trigger;
         this.outcome = outcome;
         this.routine = routine;
+        this.category = category;
     }
 
     public Long getId() {
