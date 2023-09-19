@@ -1,5 +1,7 @@
 package com.example.app.model;
 
+import java.util.List;
+
 public class Category {
     private Long Id;
     private String name;
