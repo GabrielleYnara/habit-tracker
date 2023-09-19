@@ -1,10 +1,24 @@
 package com.example.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "profile")
 public class Profile {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long Id;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
+    @Column
     private String bio;
+    @JsonIgnore //prevents stack overflow
+    @OneToOne(mappedBy = "profile")
     private User user;
 
     public Profile() {
