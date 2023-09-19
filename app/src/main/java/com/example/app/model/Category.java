@@ -1,12 +1,28 @@
 package com.example.app.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.*;
+import java.util.List;
+@Entity
+@Table(name="categories")
 public class Category {
+    @Id //Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate sequence of unused values
+    @Column
     private Long Id;
+    @Column
     private String name;
+    @Column
     private String description;
+    @JsonIgnore // prevents stack overflow
+    @ManyToOne //Many categories belong to the same user
+    @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(mappedBy = "category", orphanRemoval = true)//if deleted, deletes associated records as well
+    @LazyCollection(LazyCollectionOption.FALSE) //loads associated habits when loading the category
     private List<Habit> habitList;
 
     public Category() {
