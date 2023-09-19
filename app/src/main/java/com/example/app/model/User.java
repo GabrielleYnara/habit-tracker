@@ -1,14 +1,32 @@
 package com.example.app.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.*;
+import java.util.List;
+@Entity
+@Table(name="users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate a sequence of unused Long integer value
+    @Column
     private Long Id;
+    @Column(unique = true) //validation on SQL side
     private String emailAddress;
+    @Column
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //doesn't allow reading it
     private String password;
+    @OneToOne(cascade = CascadeType.ALL) //when loading user, load profile as well
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true) //if deleted, deletes associated records as well
+    @LazyCollection(LazyCollectionOption.FALSE) //loads associated categories when loading the user
     private List<Category> categoryList;
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Habit> habitList;
 
     public User() {
