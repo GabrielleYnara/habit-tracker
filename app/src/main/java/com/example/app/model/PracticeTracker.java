@@ -1,11 +1,23 @@
 package com.example.app.model;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+@Entity
+@Table(name = "practices")
 public class PracticeTracker {
+    @Id //Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generate sequence of unused values
+    @Column
     private Long id;
+    @Column
     private boolean done;
+    @Column
     private LocalDate date;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "habit_id")
     private Habit habit;
 
     public PracticeTracker() {

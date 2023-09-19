@@ -1,8 +1,11 @@
 package com.example.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "habits")
@@ -27,6 +30,11 @@ public class Habit {
     @ManyToOne //Many habits belong to the same category
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "habit", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<PracticeTracker> practiceTrackerList;
+
 
     public Habit() {
     }
