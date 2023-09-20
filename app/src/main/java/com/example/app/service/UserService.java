@@ -1,5 +1,6 @@
 package com.example.app.service;
 
+import com.example.app.exception.InformationExistException;
 import com.example.app.model.User;
 import com.example.app.model.request.LoginRequest;
 import com.example.app.repository.UserRepository;
@@ -22,7 +23,7 @@ import java.util.Optional;
  * This class serves as an intermediary between the controller and the repository,
  * invoking the repository to perform CRUD operations on users.
  *
- * @version 1.2.0
+ * @version 1.3.0
  */
 @Service
 public class UserService {
@@ -49,6 +50,20 @@ public class UserService {
         this.authenticationManager = authenticationManager;
     }
 
+    /**
+     * Registers a new user.
+     * @param user User object containing details.
+     * @return The registered User.
+     * @throws InformationExistException If email is already registered.
+     */
+    public User createUser(User user){
+        if (userRepository.findUserByEmailAddress(user.getEmailAddress()) != null){
+            user.setPassword(passwordEncoder.encode(user.getPassword())); //encode password given
+            return userRepository.save(user);
+        } else {
+            throw new InformationExistException("user with email address " + user.getEmailAddress() + " already exist.");
+        }
+    }
     /**
      * Authenticate a user based on the provided login request.
      *
