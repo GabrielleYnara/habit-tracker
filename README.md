@@ -1,7 +1,10 @@
 # Habit Tracker
 Is a Java-based web application designed to help users manage and track their daily habits. The application provides a secure platform where users can create and monitor various habits, also categorize them for better focus and analysis.
-## Approach
 
+## Approach
+**Initial Planning**: Created a Trello board for project management and drafted an Entity Relation Diagram and User Stories.  
+**Task Breakdown**: Turned User Stories into Trello cards and outlined the required API endpoints.  
+**Repo Setup and Development**: Created a GitHub repository, cloned it locally, established MVC architecture, and implemented JWT-based authentication. Then continued implementing features and testing on-the-go, ensuring a functional application.
 
 ## Tools and Technologies
 - **IntelliJ IDEA**: IDE for Java
@@ -18,8 +21,7 @@ Is a Java-based web application designed to help users manage and track their da
 - **H2 Database**: In-memory DBMS
 - **Postman**: API testing
 - **Lucid**: ERD creation
-
-## Roadclocks
+- **Trello**: Project Management
 
 ## User Stories
 <details>
@@ -130,9 +132,9 @@ Is a Java-based web application designed to help users manage and track their da
 
 ## ERD
 
-## Planning
-
 ## Installation Instructions
+
+## Roadblocks
 
 ## Acknowledgments
 This project was developed as part of the Software Engineering Immersive program by General Assembly. It serves as a practice project to apply and reinforce skills in Java, Object-Oriented Programming, and Spring Boot.
