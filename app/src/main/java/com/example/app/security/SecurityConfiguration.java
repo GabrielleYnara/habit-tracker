@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Responsible to configure security settings for the application.<br>
@@ -29,6 +30,11 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public JwtRequestFilter authJwtRequestFilter(){
+        return new JwtRequestFilter();
+    }
+
     /**
      * Configures and returns a SecurityFilterChain based on the provided HttpSecurity object.
      *
@@ -43,9 +49,10 @@ public class SecurityConfiguration {
                 .antMatchers("/h2-console/**").permitAll() //access to database
                 .anyRequest().authenticated()
                 .and().sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //every time will check for jwt token, not session based.
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //every time will check for jwt token, not session based.
                 .and().csrf().disable()
                 .headers().frameOptions().disable();
+        http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
