@@ -2,6 +2,8 @@ package com.example.app.model.request;
 /**
  * Represents a login request containing email address and password.<br>
  * This class is used just for login request handling.
+ *
+ * @version 1.0.0
  */
 public class LoginRequest {
     private String emailAddress;
