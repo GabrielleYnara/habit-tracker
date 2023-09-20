@@ -2,14 +2,40 @@ package com.example.app.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Responsible to configure security settings for the application.<br>
+ * This class contains beans and configuration settings related to authentication and authorization.
+ *
+ * @version 1.1.0
+ */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
+    /**
+     * Creates and returns a BCryptPasswordEncoder object.
+     *
+     * @return BCryptPasswordEncoder
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * Configures and returns a SecurityFilterChain based on the provided HttpSecurity object.
+     *
+     * @param http HttpSecurity object used for configuration.
+     * @return SecurityFilterChain
+     * @throws Exception if an error occurs during configuration.
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //policies on every request:
@@ -22,4 +48,6 @@ public class SecurityConfiguration {
                 .headers().frameOptions().disable();
         return http.build();
     }
+
+
 }
