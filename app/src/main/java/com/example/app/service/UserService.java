@@ -4,6 +4,14 @@ import com.example.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Represents the User Service, responsible for housing business logic related to users.<br>
+ *
+ * This class serves as an intermediary between the controller and the repository,
+ * invoking the repository to perform CRUD operations on users.
+ *
+ * @version 1.0.0
+ */
 @Service
 public class UserService {
     private final UserRepository userRepository;
