@@ -19,6 +19,11 @@ public class MyUserDetails implements UserDetails {
      */
     private final User user;
 
+    /**
+     * Initializes a new instance of MyUserDetails with the provided User object.
+     *
+     * @param user The User object containing the details of the user.
+     */
     public MyUserDetails(User user) {
         this.user = user;
     }
