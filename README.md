@@ -130,7 +130,16 @@ Is a Java-based web application designed to help users manage and track their da
     - The application should delete the habit practice record.
 </details>
 
-## ERD
+## Entity-Relation Diagram (ERD)
+The ERD illustrates the relationship between different entities such as `User`, `Profile`, `Habit`, `Practice`, and `Category`.
+
+![ERD](./assets/Habit Tracker ERD.png)
+
+- **User**: Manages user credentials.
+- **Profile**: Manages user information.
+- **Habit**: Represents individual habits that users want to track.
+- **Practice**: Represents the habit tracking.
+- **Category**: Allows users to categorize their habits for better management.
 
 ## Installation Instructions
 
