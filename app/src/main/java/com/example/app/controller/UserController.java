@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.model.User;
 import com.example.app.model.request.LoginRequest;
 import com.example.app.model.response.LoginResponse;
 import com.example.app.service.UserService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 /**
- * @version 1.0.0
+ * @version 1.1.0
  */
 @RestController
 @RequestMapping(path = "/auth/users") //http://localhost:9009/auth/users
@@ -29,6 +30,11 @@ public class UserController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+    @PostMapping(path = "/register/") //http://localhost:9009/auth/users/register/
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
+    }
+
     @PostMapping(path="/login/") //http://localhost:9009/auth/users/login/
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         Optional<String> jwtToken = userService.loginUser(loginRequest);
