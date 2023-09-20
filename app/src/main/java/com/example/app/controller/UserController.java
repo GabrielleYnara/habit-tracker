@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 /**
+ * User Controller for handling user operations including authentication, registration, and profile management.
+ *
  * @version 1.1.0
  */
 @RestController
@@ -30,11 +32,24 @@ public class UserController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+    /**
+     * Handles user registration by creating a new user.
+     *
+     * @param user User object containing the information of the user to be registered.
+     * @return The newly created User object.
+     */
     @PostMapping(path = "/register/") //http://localhost:9009/auth/users/register/
     public User createUser(@RequestBody User user){
         return userService.createUser(user);
     }
 
+    /**
+     * Handles user authentication by generating a JWT token if the credentials are valid.
+     *
+     * @param loginRequest The LoginRequest containing the user's login credentials.
+     * @return A ResponseEntity with a LoginResponse, which includes the JWT token if successful,
+     *         or an error message otherwise.
+     */
     @PostMapping(path="/login/") //http://localhost:9009/auth/users/login/
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         Optional<String> jwtToken = userService.loginUser(loginRequest);
