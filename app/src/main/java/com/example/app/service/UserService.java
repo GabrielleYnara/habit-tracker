@@ -26,6 +26,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
     /**
      * Finds a User entity based on the provided email address.
      *
