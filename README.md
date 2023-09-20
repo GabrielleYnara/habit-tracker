@@ -4,20 +4,20 @@ Is a Java-based web application designed to help users manage and track their da
 
 
 ## Tools and Technologies
-- **IntelliJ IDEA**: Integrated Development Environment (IDE) specifically for Java.
-- **Maven**: Build and dependency management.
-- **Git**: Version control system.
-- **Java**: The programming language used for developing the application.
-- **Spring Boot**: Framework used for building Java-based web applications.
-- **Tomcat Server**:
-- **MVC Architecture**
-- **Spring Security**
-- **RESTful APIs**: Design architecture for API endpoints.
-- **JWT (JSON Web Tokens)**: Used for authentication and security.
-- **Spring Data JPA**: Library for object-relational mapping and data access.
-- **H2 Database**: In-memory relational database management system.
-- **Postman**: Tool used for testing API endpoints.
-- **Lucid**: Tool used for creating various types of diagrams, such as UML and flowcharts.
+- **IntelliJ IDEA**: IDE for Java
+- **Maven**: Build and dependency management
+- **Git**: Version control
+- **Java**: Programming language
+- **Spring Boot**: Java web framework
+- **Tomcat Server**: Web server
+- **MVC Architecture**: Design pattern
+- **Spring Security**: Authentication and authorization
+- **RESTful APIs**: API design
+- **JWT (JSON Web Tokens)**: Secure authentication
+- **Spring Data JPA**: Database operations
+- **H2 Database**: In-memory DBMS
+- **Postman**: API testing
+- **Lucid**: ERD creation
 
 ## Roadclocks
 
