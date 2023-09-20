@@ -1,9 +1,16 @@
 package com.example.app.service;
 
 import com.example.app.model.User;
+import com.example.app.model.request.LoginRequest;
 import com.example.app.repository.UserRepository;
+import com.example.app.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Represents the User Service, responsible for housing business logic related to users.<br>
