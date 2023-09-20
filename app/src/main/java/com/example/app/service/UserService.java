@@ -1,6 +1,7 @@
 package com.example.app.service;
 
 import com.example.app.exception.InformationExistException;
+import com.example.app.model.Profile;
 import com.example.app.model.User;
 import com.example.app.model.request.LoginRequest;
 import com.example.app.repository.UserRepository;
@@ -57,8 +58,10 @@ public class UserService {
      * @throws InformationExistException If email is already registered.
      */
     public User createUser(User user){
-        if (userRepository.findUserByEmailAddress(user.getEmailAddress()) != null){
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findUserByEmailAddress(user.getEmailAddress())); //checks if email address already exists in database
+        if (userOptional.isEmpty()){ // email not registered yet
             user.setPassword(passwordEncoder.encode(user.getPassword())); //encode password given
+            user.setProfile(new Profile());
             return userRepository.save(user);
         } else {
             throw new InformationExistException("user with email address " + user.getEmailAddress() + " already exist.");
