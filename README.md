@@ -1,6 +1,8 @@
 # Habit Tracker
 Is a Java-based web application designed to help users manage and track their daily habits. The application provides a secure platform where users can create and monitor various habits, also categorize them for better focus and analysis.
 
+![Status](https://img.shields.io/badge/Status-Under%20Development-yellow)
+
 ## Approach
 **Initial Planning**: Created a Trello board for project management and drafted an Entity Relation Diagram and User Stories.  
 **Task Breakdown**: Turned User Stories into Trello cards and outlined the required API endpoints.  
@@ -26,6 +28,7 @@ Is a Java-based web application designed to help users manage and track their da
 ## User Stories
 <details>
   <summary>User</summary>
+
 1. **As a new user, I want to be able to register** so that I can access personalized features and settings in the application.
    - The user must provide a unique email address that is not already registered in the system.
      * :warning: The application should show an error message if an email is already registered.
@@ -50,6 +53,7 @@ Is a Java-based web application designed to help users manage and track their da
 
 <details>
   <summary>Category</summary>
+
 1. **As a logged-in user, I want to create categories,** to separate my habits into.
     - The user must input a name and description.
         * :warning: The name must be unique.
@@ -79,6 +83,7 @@ Is a Java-based web application designed to help users manage and track their da
 
 <details>
   <summary>Habit</summary>
+
 1. **As a logged-in user, I want to create a habit and associate it with a category,** so I can keep things organized.
     - The user must input a unique name, routine, and category.
         * :warning: The application should show an error if Habit’s name is not unique.
@@ -104,6 +109,7 @@ Is a Java-based web application designed to help users manage and track their da
 
 <details>
   <summary>Practice</summary>
+
 1. **As a logged-in user, I want to register when I practice a habit.**
     - The user must input an existing habit.
         * :warning: The application should show an error if the habit is not found.
@@ -133,7 +139,7 @@ Is a Java-based web application designed to help users manage and track their da
 ## Entity-Relation Diagram (ERD)
 The ERD illustrates the relationship between different entities such as `User`, `Profile`, `Habit`, `Practice`, and `Category`.
 
-![ERD](./assets/Habit Tracker ERD.png)
+![ERD](assets/Habit Tracker ERD.png)
 
 - **User**: Manages user credentials.
 - **Profile**: Manages user information.
@@ -142,8 +148,13 @@ The ERD illustrates the relationship between different entities such as `User`, 
 - **Category**: Allows users to categorize their habits for better management.
 
 ## Installation Instructions
+Coming soon.
 
 ## Roadblocks
+
+- **ERD Confusion**: Initially, I was unsure about what to include in the Entity-Relation Diagram, which led to delays in the planning phase.
+- **User Stories Overload**: I found myself spending an excessive amount of time crafting user stories, trying to cover all possible scenarios and features.
+- **Project Management Tool Crash**: The project management tool I initially chose crashed unexpectedly, forcing me to redo the planning steps. I switched to Trello for a more reliable experience.
 
 ## Acknowledgments
 This project was developed as part of the Software Engineering Immersive program by General Assembly. It serves as a practice project to apply and reinforce skills in Java, Object-Oriented Programming, and Spring Boot.
