@@ -45,7 +45,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //policies on every request:
-        http.authorizeRequests().antMatchers("/auth/users", "/auth/users/login", "/auth/users/register").permitAll() //public end-points
+        http.authorizeRequests().antMatchers("/auth/users", "/auth/users/login/", "/auth/users/register/").permitAll() //public end-points
                 .antMatchers("/h2-console/**").permitAll() //access to database
                 .anyRequest().authenticated()
                 .and().sessionManagement()
