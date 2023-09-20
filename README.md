@@ -1,5 +1,7 @@
-# Habit Tracker mini-project
-Java, OOP, and Spring Boot practice.
+# Habit Tracker
+Is a Java-based web application designed to help users manage and track their daily habits. The application provides a secure platform where users can create and monitor various habits, also categorize them for better focus and analysis.
+## Approach
+
 
 ## Tools and Technologies
 - **IntelliJ IDEA**: Integrated Development Environment (IDE) specifically for Java.
@@ -7,22 +9,21 @@ Java, OOP, and Spring Boot practice.
 - **Git**: Version control system.
 - **Java**: The programming language used for developing the application.
 - **Spring Boot**: Framework used for building Java-based web applications.
+- **Tomcat Server**:
+- **MVC Architecture**
+- **Spring Security**
 - **RESTful APIs**: Design architecture for API endpoints.
 - **JWT (JSON Web Tokens)**: Used for authentication and security.
 - **Spring Data JPA**: Library for object-relational mapping and data access.
-- **H2**: In-memory relational database management system.
+- **H2 Database**: In-memory relational database management system.
 - **Postman**: Tool used for testing API endpoints.
 - **Lucid**: Tool used for creating various types of diagrams, such as UML and flowcharts.
-
-## Approach
 
 ## Roadclocks
 
 ## User Stories
-
 <details>
   <summary>User</summary>
-
 1. **As a new user, I want to be able to register** so that I can access personalized features and settings in the application.
    - The user must provide a unique email address that is not already registered in the system.
      * :warning: The application should show an error message if an email is already registered.
@@ -43,12 +44,10 @@ Java, OOP, and Spring Boot practice.
 
 4. **As a logged-in user, I want to be able to see my profile,** so I can check my personal information.
     - The application should display the User’s profile, including email.
-
 </details>
 
 <details>
   <summary>Category</summary>
-
 1. **As a logged-in user, I want to create categories,** to separate my habits into.
     - The user must input a name and description.
         * :warning: The name must be unique.
@@ -74,12 +73,10 @@ Java, OOP, and Spring Boot practice.
     - The category must previously exist.
         * :warning: The application should show an error if it doesn’t.
     - The habits associated with it are also deleted.
-
 </details>
 
 <details>
   <summary>Habit</summary>
-
 1. **As a logged-in user, I want to create a habit and associate it with a category,** so I can keep things organized.
     - The user must input a unique name, routine, and category.
         * :warning: The application should show an error if Habit’s name is not unique.
@@ -101,12 +98,10 @@ Java, OOP, and Spring Boot practice.
     - The habit must exist.
         * :warning: The application should show an error if the habit is not found.
     - The habit tracks associated with it are also deleted.
-
 </details>
 
 <details>
   <summary>Practice</summary>
-
 1. **As a logged-in user, I want to register when I practice a habit.**
     - The user must input an existing habit.
         * :warning: The application should show an error if the habit is not found.
@@ -131,7 +126,6 @@ Java, OOP, and Spring Boot practice.
     - The habit track must be previously created.
         * :warning: The application should show an error if the practice is not found.
     - The application should delete the habit practice record.
-
 </details>
 
 ## ERD
