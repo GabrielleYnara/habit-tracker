@@ -48,7 +48,7 @@ Is a Java-based web application designed to help users manage and track their da
       - :warning: The application should show an error if nothing has changed.
 
 4. **As a logged-in user, I want to be able to see my profile,** so I can check my personal information.
-    - The application should display the User’s profile, including email.
+    - The application should display the User’s profile.
 </details>
 
 <details>
@@ -154,7 +154,7 @@ The ERD illustrates the relationship between different entities such as `User`, 
 | POST         | `/api/users/register/`    | `/users/register/`    | Register a new user                         | Implemented           |
 | POST         | `/api/users/login/`       | `/users/login/`       | Login a registered user                     | Implemented           |
 | GET          | `/api/users/profile/`     | `/users/profile/`     | Get the logged-in user's profile            | Implemented           |
-| PUT          | `/api/users/profile/`     | `/users/profile/`     | Update the logged-in user's profile         | Coming Soon           |
+| PUT          | `/api/users/profile/`     | `/users/profile/`     | Update the logged-in user's profile         | Implemented           |
 | GET          | `/api/categories/`        | `/categories/`        | Get all categories for a logged-in user     | Coming Soon           |
 | POST         | `/api/categories/`        | `/categories/`        | Create a new category for a logged-in user  | Coming Soon           |
 | GET          | `/api/categories/{name}/` | `/categories/{name}/` | Get a category by its name                  | Coming Soon           |
