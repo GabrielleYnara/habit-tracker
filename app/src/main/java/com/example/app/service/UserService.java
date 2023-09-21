@@ -116,18 +116,18 @@ public class UserService {
                 throw new InformationExistException("Profile details are the same. No update needed.");
             }
             //updates first name if not null and different from original
-            if(!user.getProfile().getFirstName().isEmpty() &&
-                    !userOptional.get().getProfile().getFirstName().equals(user.getProfile().getFirstName())){
+            if(user.getProfile().getFirstName() != null &&
+                    !String.valueOf(userOptional.get().getProfile().getFirstName()).equals(user.getProfile().getFirstName())){
                 userOptional.get().getProfile().setFirstName(user.getProfile().getFirstName());
             }
-            //updates first name if not null and different from original
-            if (!user.getProfile().getLastName().isEmpty() &&
-                    !userOptional.get().getProfile().getLastName().equals(user.getProfile().getLastName())){
+            //updates bio if not null and different from original
+            if (user.getProfile().getLastName() != null &&
+                    !String.valueOf(userOptional.get().getProfile().getLastName()).equals(user.getProfile().getLastName())){
                 userOptional.get().getProfile().setLastName(user.getProfile().getLastName());
             }
             //updates first name if not null and different from original
-            if (!user.getProfile().getBio().isEmpty() &&
-                    !userOptional.get().getProfile().getBio().equals(user.getProfile().getBio())){
+            if (user.getProfile().getBio() != null &&
+                    !String.valueOf(userOptional.get().getProfile().getBio()).equals(user.getProfile().getBio())){
                 userOptional.get().getProfile().setBio(user.getProfile().getBio());
             }
             return userRepository.save(userOptional.get());
