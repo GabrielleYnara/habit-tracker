@@ -81,6 +81,12 @@ public class UserController {
         return getCurrentLoggedInUser().getProfile();
     }
 
+    /**
+     * Updates the user's profile, allowing for individual or multiple attribute changes.
+     *
+     * @param profile Profile object with new details.
+     * @return Updated profile.
+     */
     @PutMapping(path="/profile/") //http://localhost:9009/auth/users/profile/
     public Profile updateUserProfile(@RequestBody Profile profile){
         User user = getCurrentLoggedInUser();
