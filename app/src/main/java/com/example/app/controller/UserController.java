@@ -72,6 +72,10 @@ public class UserController {
         }
     }
 
+    /**
+     * Retrieves the profile of the currently logged-in user.
+     * @return Profile object
+     */
     @GetMapping(path="/profile/") //http://localhost:9009/auth/users/profile/
     public Profile getUserProfile(){
         return getCurrentLoggedInUser().getProfile();
