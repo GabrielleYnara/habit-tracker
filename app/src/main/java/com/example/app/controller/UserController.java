@@ -81,4 +81,10 @@ public class UserController {
         return getCurrentLoggedInUser().getProfile();
     }
 
+    @PutMapping(path="/profile/") //http://localhost:9009/auth/users/profile/
+    public Profile updateUserProfile(@RequestBody Profile profile){
+        User user = getCurrentLoggedInUser();
+        user.setProfile(profile);
+        return userService.updateUserProfile(user).getProfile();
+    }
 }

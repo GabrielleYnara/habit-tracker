@@ -26,7 +26,7 @@ import java.util.Optional;
  * This class serves as an intermediary between the controller and the repository,
  * invoking the repository to perform CRUD operations on users.
  *
- * @version 1.4.1
+ * @version 1.4.2
  */
 @Service
 public class UserService {
