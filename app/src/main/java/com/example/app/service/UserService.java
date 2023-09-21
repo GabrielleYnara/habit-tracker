@@ -100,6 +100,14 @@ public class UserService {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
 
+    /**
+     * Updates the user's profile with the provided details.
+     *
+     * @param user User with new profile details.
+     * @return Updated User object.
+     * @throws InformationExistException If user matches database entry.
+     * @throws InformationNotFoundException If user not found.
+     */
     public User updateUserProfile(User user){
         Optional<User> userOptional = Optional.ofNullable(findUserByEmailAddress(user.getEmailAddress()));
         if(userOptional.isPresent()){ //user exists in database
@@ -124,7 +132,7 @@ public class UserService {
             }
             return userRepository.save(userOptional.get());
         } else {
-            throw new InformationExistException("user with email address " + user.getEmailAddress() + " not found.");
+            throw new InformationNotFoundException("user with email address " + user.getEmailAddress() + " not found.");
         }
     }
 }

@@ -80,4 +80,5 @@ public class UserController {
     public Profile getUserProfile(){
         return getCurrentLoggedInUser().getProfile();
     }
+
 }
