@@ -1,6 +1,7 @@
 package com.example.app.service;
 
 import com.example.app.exception.InformationExistException;
+import com.example.app.exception.InformationNotFoundException;
 import com.example.app.model.Profile;
 import com.example.app.model.User;
 import com.example.app.model.request.LoginRequest;
@@ -15,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import java.util.Optional;
 
@@ -24,7 +26,7 @@ import java.util.Optional;
  * This class serves as an intermediary between the controller and the repository,
  * invoking the repository to perform CRUD operations on users.
  *
- * @version 1.3.1
+ * @version 1.4.1
  */
 @Service
 public class UserService {
@@ -96,5 +98,29 @@ public class UserService {
      */
     public User findUserByEmailAddress(String emailAddress){
         return userRepository.findUserByEmailAddress(emailAddress);
+    }
+
+    public User updateUserProfile(User user){
+        Optional<User> userOptional = Optional.ofNullable(findUserByEmailAddress(user.getEmailAddress()));
+        if(userOptional.isPresent()){ //user exists in database
+            //updates first name if not null and different from original
+            if(!user.getProfile().getFirstName().isEmpty() &&
+                    !userOptional.get().getProfile().getFirstName().equals(user.getProfile().getFirstName())){
+                userOptional.get().getProfile().setFirstName(user.getProfile().getFirstName());
+            }
+            //updates first name if not null and different from original
+            if (!user.getProfile().getLastName().isEmpty() &&
+                    !userOptional.get().getProfile().getLastName().equals(user.getProfile().getLastName())){
+                userOptional.get().getProfile().setLastName(user.getProfile().getLastName());
+            }
+            //updates first name if not null and different from original
+            if (!user.getProfile().getBio().isEmpty() &&
+                    !userOptional.get().getProfile().getBio().equals(user.getProfile().getBio())){
+                userOptional.get().getProfile().setBio(user.getProfile().getBio());
+            }
+            return userRepository.save(userOptional.get());
+        } else {
+            throw new InformationExistException("user with email address " + user.getEmailAddress() + " not found.");
+        }
     }
 }
