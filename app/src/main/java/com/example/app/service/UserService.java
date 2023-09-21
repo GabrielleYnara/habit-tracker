@@ -103,6 +103,10 @@ public class UserService {
     public User updateUserProfile(User user){
         Optional<User> userOptional = Optional.ofNullable(findUserByEmailAddress(user.getEmailAddress()));
         if(userOptional.isPresent()){ //user exists in database
+            //throws error if provided profile is equal to original
+            if (userOptional.get().getProfile() == user.getProfile()){
+                throw new InformationExistException("Profile details are the same. No update needed.");
+            }
             //updates first name if not null and different from original
             if(!user.getProfile().getFirstName().isEmpty() &&
                     !userOptional.get().getProfile().getFirstName().equals(user.getProfile().getFirstName())){
