@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.model.Profile;
 import com.example.app.model.User;
 import com.example.app.model.request.LoginRequest;
 import com.example.app.model.response.LoginResponse;
@@ -70,8 +71,9 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Authentication failed!"));
         }
     }
+
     @GetMapping(path="/profile/") //http://localhost:9009/auth/users/profile/
-    public User getUserProfile(){
-        return getCurrentLoggedInUser();
+    public Profile getUserProfile(){
+        return getCurrentLoggedInUser().getProfile();
     }
 }
