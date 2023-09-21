@@ -6,18 +6,17 @@ import com.example.app.model.response.LoginResponse;
 import com.example.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import com.example.app.security.MyUserDetails;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 /**
  * User Controller for handling user operations including authentication, registration, and profile management.
  *
- * @version 1.1.0
+ * @version 1.2.0
  */
 @RestController
 @RequestMapping(path = "/auth/users") //http://localhost:9009/auth/users
@@ -32,6 +31,18 @@ public class UserController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+
+    /**
+     * Extracts user information from context holder
+     * @return Current logged in User object
+     * @font todo project
+     */
+    public static User getCurrentLoggedInUser(){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder //After jwt is generated, Security Context Holder is created to hold the user's state
+                .getContext().getAuthentication().getPrincipal(); // the entire User object, with authentication details
+        return userDetails.getUser();
+    }
+
     /**
      * Handles user registration by creating a new user.
      *
@@ -58,5 +69,9 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Authentication failed!"));
         }
+    }
+    @GetMapping(path="/profile/") //http://localhost:9009/auth/users/profile/
+    public User getUserProfile(){
+        return getCurrentLoggedInUser();
     }
 }

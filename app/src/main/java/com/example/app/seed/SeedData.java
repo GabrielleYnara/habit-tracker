@@ -1,5 +1,6 @@
 package com.example.app.seed;
 
+import com.example.app.model.Profile;
 import com.example.app.model.User;
 import com.example.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class SeedData implements CommandLineRunner {
         User user = new User();
         user.setEmailAddress("gabrielleynara@ymail.com");
         user.setPassword(passwordEncoder.encode("gaby1234"));
+        user.setProfile(new Profile());
         userRepository.save(user);
     }
 
