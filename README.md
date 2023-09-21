@@ -139,7 +139,7 @@ Is a Java-based web application designed to help users manage and track their da
 ## Entity-Relation Diagram (ERD)
 The ERD illustrates the relationship between different entities such as `User`, `Profile`, `Habit`, `Practice`, and `Category`.
 
-![ERD](assets/Habit Tracker ERD.png)
+![ERD](https://github.com/GabrielleYnara/habit-tracker/blob/main/assets/Habit%20Tracker%20ERD.png)
 
 - **User**: Manages user credentials.
 - **Profile**: Manages user information.
@@ -149,26 +149,26 @@ The ERD illustrates the relationship between different entities such as `User`, 
 - 
 ## API Endpoints
 
-| HTTP Methods | Full URL                          | Endpoint URL          | Functionality                               | Implementation Status |
-|--------------|-----------------------------------|-----------------------|---------------------------------------------|-----------------------|
-| POST         | `/api/users/register`             | `/users/register`     | Register a new user                         | Implemented           |
-| POST         | `/api/users/login`                | `/users/login`        | Login a registered user                     | Implemented           |
-| GET          | `/api/users/profile`              | `/users/profile`      | Get the logged-in user's profile            | Coming Soon           |
-| PUT          | `/api/users/profile`              | `/users/profile`      | Update the logged-in user's profile         | Coming Soon           |
-| GET          | `/api/categories/`                | `/categories/`        | Get all categories for a logged-in user     | Coming Soon           |
-| POST         | `/api/categories/`                | `/categories/`        | Create a new category for a logged-in user  | Coming Soon           |
-| GET          | `/api/categories/{name}`          | `/categories/{name}`  | Get a category by its name                  | Coming Soon           |
-| PUT          | `/api/categories/{id}`            | `/categories/{id}`    | Update a category by its ID                 | Coming Soon           |
-| DELETE       | `/api/categories/{id}`            | `/categories/{id}`    | Delete a category by its ID                 | Coming Soon           |
-| GET          | `/api/habits/`                    | `/habits/`            | Get all habits for a logged-in user         | Coming Soon           |
-| POST         | `/api/habits/`                    | `/habits/`            | Create a new habit for a logged-in user     | Coming Soon           |
-| GET          | `/api/habits/{name}`              | `/habits/{name}`      | Get a habit by its name                     | Coming Soon           |
-| PUT          | `/api/habits/{id}`                | `/habits/{id}`        | Update a habit by its ID                    | Coming Soon           |
-| DELETE       | `/api/habits/{id}`                | `/habits/{id}`        | Delete a habit by its ID                    | Coming Soon           |
-| POST         | `/api/practices/`                 | `/practices/`         | Register a new practice for a habit         | Coming Soon           |
-| GET          | `/api/practices/{date}`           | `/practices/{date}`   | Get all practices for a given date          | Coming Soon           |
-| PUT          | `/api/practices/{id}`             | `/practices/{id}`     | Update a practice by its ID                 | Coming Soon           |
-| DELETE       | `/api/practices/{id}`             | `/practices/{id}`     | Delete a practice by its ID                 | Coming Soon           |
+| HTTP Methods | Full URL                  | Endpoint URL          | Functionality                               | Implementation Status |
+|--------------|---------------------------|-----------------------|---------------------------------------------|-----------------------|
+| POST         | `/api/users/register/`    | `/users/register/`    | Register a new user                         | Implemented           |
+| POST         | `/api/users/login/`       | `/users/login/`       | Login a registered user                     | Implemented           |
+| GET          | `/api/users/profile/`     | `/users/profile/`     | Get the logged-in user's profile            | Implemented           |
+| PUT          | `/api/users/profile/`     | `/users/profile/`     | Update the logged-in user's profile         | Coming Soon           |
+| GET          | `/api/categories/`        | `/categories/`        | Get all categories for a logged-in user     | Coming Soon           |
+| POST         | `/api/categories/`        | `/categories/`        | Create a new category for a logged-in user  | Coming Soon           |
+| GET          | `/api/categories/{name}/` | `/categories/{name}/` | Get a category by its name                  | Coming Soon           |
+| PUT          | `/api/categories/{id}/`   | `/categories/{id}/`   | Update a category by its ID                 | Coming Soon           |
+| DELETE       | `/api/categories/{id}/`   | `/categories/{id}/`   | Delete a category by its ID                 | Coming Soon           |
+| GET          | `/api/habits/`            | `/habits/`            | Get all habits for a logged-in user         | Coming Soon           |
+| POST         | `/api/habits/`            | `/habits/`            | Create a new habit for a logged-in user     | Coming Soon           |
+| GET          | `/api/habits/{name}/`     | `/habits/{name}/`     | Get a habit by its name                     | Coming Soon           |
+| PUT          | `/api/habits/{id}/`       | `/habits/{id}/`       | Update a habit by its ID                    | Coming Soon           |
+| DELETE       | `/api/habits/{id}/`       | `/habits/{id}/`       | Delete a habit by its ID                    | Coming Soon           |
+| POST         | `/api/practices/`         | `/practices/`         | Register a new practice for a habit         | Coming Soon           |
+| GET          | `/api/practices/{date}/`  | `/practices/{date}/`  | Get all practices for a given date          | Coming Soon           |
+| PUT          | `/api/practices/{id}/`    | `/practices/{id}/`    | Update a practice by its ID                 | Coming Soon           |
+| DELETE       | `/api/practices/{id}/`    | `/practices/{id}/`    | Delete a practice by its ID                 | Coming Soon           |
 
 
 ## Installation Instructions
@@ -181,4 +181,5 @@ Coming soon.
 - **Project Management Tool Crash**: The project management tool I initially chose crashed unexpectedly, forcing me to redo the planning steps. I switched to Trello for a more reliable experience.
 
 ## Acknowledgments
-This project was developed as part of the Software Engineering Immersive program by General Assembly. It serves as a practice project to apply and reinforce skills in Java, Object-Oriented Programming, and Spring Boot.
+This project was developed as part of the Software Engineering Immersive program by General Assembly. 
+It serves as a practice project to apply and reinforce skills in Java, Object-Oriented Programming, and Spring Boot.
