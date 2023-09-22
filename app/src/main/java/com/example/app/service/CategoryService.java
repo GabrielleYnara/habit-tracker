@@ -232,7 +232,13 @@ public class CategoryService {
         }
     }
 
-
+    /**
+     * Deletes the habit specified by the given categoryId and habitId.
+     *
+     * @param categoryId The unique Category Id.
+     * @param habitId The unique Habit Id.
+     * @return The deleted Habit.
+     */
     public Optional<Habit> deleteHabit(Long categoryId, Long habitId) {
         Optional<Habit> habitOptional = Optional.ofNullable(getHabit(categoryId, habitId));
         if (habitOptional.isPresent()) {
