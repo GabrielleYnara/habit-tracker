@@ -231,4 +231,15 @@ public class CategoryService {
             throw new InformationNotFoundException("Habit with id " + habit.getId() + " not found.");
         }
     }
+
+
+    public Optional<Habit> deleteHabit(Long categoryId, Long habitId) {
+        Optional<Habit> habitOptional = Optional.ofNullable(getHabit(categoryId, habitId));
+        if (habitOptional.isPresent()) {
+            habitRepository.deleteById(habitId);
+            return habitOptional;
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
 }

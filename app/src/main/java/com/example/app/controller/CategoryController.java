@@ -68,4 +68,10 @@ public class CategoryController {
         habit.setId(habitId);
         return Optional.ofNullable(categoryService.updateHabit(habit));
     }
+
+    @DeleteMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9009/api/categories/1/habits/1/
+    public Optional<Habit> deleteHabit(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "habitId") Long habitId) {
+        return categoryService.deleteHabit(categoryId, habitId);
+    }
+
 }
