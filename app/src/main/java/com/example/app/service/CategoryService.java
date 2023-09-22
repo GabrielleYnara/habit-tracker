@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -196,5 +197,38 @@ public class CategoryService {
             throw new InformationNotFoundException("No habits found for User id " + user.getId());
         }
         return habitList;
+    }
+
+    /**
+     * Updates the specified fields of a given habit using Java Reflection.
+     * <p>
+     * Only the necessary fields of the class are updated.
+     *</p>
+     * @References: <a href="https://docs.oracle.com/javase/tutorial/reflect/class/classMembers.html">Using Java Reflection</a><br>
+     *              <a href="https://docs.oracle.com/javase/tutorial/reflect/class/classMembers.html">Discovering Class Members</a><br>
+     *              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Field.html">Class Field</a><br>
+     * @param habit Habit object with the updated properties.
+     * @return The updated Habit object.
+     * @throws InformationNotFoundException If no habit was found if given id.
+     */
+    public Habit updateHabit(Habit habit) throws IllegalAccessException {
+        Optional<Habit> habitOptional = habitRepository.findById(habit.getId());
+        if (habitOptional.isPresent()){
+            try {
+                for (Field field : Habit.class.getDeclaredFields()) { // Java Reflection allows to loop through class fields
+                    field.setAccessible(true); //make private fields accessible
+                    Object newValue = field.get(habit); //assigns the current field's value from habit to newValue
+                    Object originalValue = field.get(habitOptional.get()); //assigns the current field's value from habitOptional to originalValue
+                    if (newValue != null && !newValue.equals(originalValue)) { //if not null and different from original
+                        field.set(habitOptional.get(), newValue);
+                    }
+                }
+                return habitRepository.save(habitOptional.get());
+            } catch (IllegalArgumentException e){
+                throw new IllegalArgumentException(e.getMessage());
+            }
+        } else {
+            throw new InformationNotFoundException("Habit with id " + habit.getId() + " not found.");
+        }
     }
 }

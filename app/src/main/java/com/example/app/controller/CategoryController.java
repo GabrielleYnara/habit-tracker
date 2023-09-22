@@ -62,4 +62,10 @@ public class CategoryController {
     public List<Habit> getAllHabits() {
         return categoryService.getAllHabits();
     }
+
+    @PutMapping(path = "/habits/{habitId}/") //http://localhost:9009/api/habits/1/
+    public Optional<Habit> updateHabit(@PathVariable(value = "habitId") Long habitId, @RequestBody Habit habit) throws IllegalAccessException {
+        habit.setId(habitId);
+        return Optional.ofNullable(categoryService.updateHabit(habit));
+    }
 }
