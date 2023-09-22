@@ -66,7 +66,6 @@ public class SeedData implements CommandLineRunner {
         category1.setDescription("Habits related to bed routine");
         category1.setUser(user);
         categoryRepository.save(category1);
-
     }
 
 }

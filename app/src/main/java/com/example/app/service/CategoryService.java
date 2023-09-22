@@ -161,6 +161,14 @@ public class CategoryService {
         }
     }
 
+    /**
+     * Retrieves a habit by its ID, associated with the given category and current user.
+     *
+     * @param categoryId Category's unique ID.
+     * @param habitId Habit's unique ID.
+     * @return Retrieved habit.
+     * @throws InformationNotFoundException if the habit is not found.
+     */
     public Habit getHabit(Long categoryId, Long habitId){
         Optional<Category> categoryOptional = getCategory(categoryId);
         Optional<Habit> habitOptional = categoryOptional
