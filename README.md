@@ -158,8 +158,8 @@ The ERD illustrates the relationship between different entities such as `User`, 
 | GET          | `/api/categories/`       | `/categories/`       | Get all categories for a logged-in user    | Implemented           |
 | POST         | `/api/categories/`       | `/categories/`       | Create a new category for a logged-in user | Implemented           |
 | GET          | `/api/categories/{id}/`  | `/categories/{id}/`  | Get a category by its ID                   | Implemented           |
-| PUT          | `/api/categories/{id}/`  | `/categories/{id}/`  | Update a category by its ID                | Coming Soon           |
-| DELETE       | `/api/categories/{id}/`  | `/categories/{id}/`  | Delete a category by its ID                | Coming Soon           |
+| PUT          | `/api/categories/{id}/`  | `/categories/{id}/`  | Update a category by its ID                | Implemented           |
+| DELETE       | `/api/categories/{id}/`  | `/categories/{id}/`  | Delete a category by its ID                | Implemented           |
 | GET          | `/api/habits/`           | `/habits/`           | Get all habits for a logged-in user        | Coming Soon           |
 | POST         | `/api/habits/`           | `/habits/`           | Create a new habit for a logged-in user    | Coming Soon           |
 | GET          | `/api/habits/{name}/`    | `/habits/{name}/`    | Get a habit by its name                    | Coming Soon           |

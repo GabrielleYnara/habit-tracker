@@ -15,10 +15,8 @@ import java.util.Optional;
 
 /**
  * Represents the Category Service, responsible for handling business logic related to categories.
- *
  * This class serves as an intermediary between the controller and the category repository,
  * invoking the repository to perform CRUD operations on categories.
- *
  * Note: Imported and refactored from todo project
  * @version 1.0.0
  */
@@ -41,7 +39,7 @@ public class CategoryService {
      * @return User object
      */
     public static User getCurrentLoggedInUser(){
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder //After jwt is generated, Security Context Holder is create to hold the user's state
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder //After jwt is generated, Security Context Holder is created to hold the user's state
                 .getContext().getAuthentication().getPrincipal(); // the entire User object, with authentication details
         return userDetails.getUser();
     }
