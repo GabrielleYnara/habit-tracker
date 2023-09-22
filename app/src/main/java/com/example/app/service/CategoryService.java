@@ -183,6 +183,11 @@ public class CategoryService {
         }
     }
 
+    /**
+     * Retrieves a list of habits associated with the current user.
+     * @return List of user's habits.
+     * @throws InformationNotFoundException If no habits are found for the user.
+     */
     public List<Habit> getAllHabits() {
         User user = getCurrentLoggedInUser();
         List<Habit> habitList = user.getHabitList();
