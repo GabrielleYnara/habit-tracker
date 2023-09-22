@@ -182,4 +182,14 @@ public class CategoryService {
             throw new InformationNotFoundException("habit with id " + habitId + " not found");
         }
     }
+
+    public List<Habit> getAllHabits() {
+        User user = getCurrentLoggedInUser();
+        List<Habit> habitList = user.getHabitList();
+
+        if (habitList.isEmpty()){
+            throw new InformationNotFoundException("No habits found for User id " + user.getId());
+        }
+        return habitList;
+    }
 }

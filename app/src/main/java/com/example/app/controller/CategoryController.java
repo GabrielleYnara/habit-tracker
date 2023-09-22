@@ -54,9 +54,12 @@ public class CategoryController {
         return categoryService.createCategoryHabit(categoryId, habit);
     }
 
-    @GetMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9092/api/categories/1/habits/1/
+    @GetMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9009/api/categories/1/habits/1/
     public Optional<Habit> getHabit(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "habitId") Long habitId) {
         return Optional.ofNullable(categoryService.getHabit(categoryId, habitId));
     }
-    
+    @GetMapping(path = "/habits/") //http://localhost:9009/api/habits/
+    public List<Habit> getAllHabits() {
+        return categoryService.getAllHabits();
+    }
 }
