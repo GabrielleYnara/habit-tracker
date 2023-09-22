@@ -19,6 +19,7 @@ import java.util.Optional;
  * This class serves as an intermediary between the controller and the category repository,
  * invoking the repository to perform CRUD operations on categories.
  *
+ * Note: Imported and refactored from todo project
  * @version 1.0.0
  */
 @Service
@@ -61,6 +62,13 @@ public class CategoryService {
         }
     }
 
+    /**
+     * Retrieves a single category by its categoryId.
+     *
+     * @param categoryId The unique ID of the category to retrieve.
+     * @return An Optional containing the Category object if found.
+     * @throws InformationNotFoundException if the category is not found.
+     */
     public Optional<Category> getCategory(Long categoryId){
         Optional<Category> categoryOptional = Optional.of(categoryRepository.findByIdAndUserId(categoryId, CategoryService.getCurrentLoggedInUser().getId()));
         if (categoryOptional.isPresent()){

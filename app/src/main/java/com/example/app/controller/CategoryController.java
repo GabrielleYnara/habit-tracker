@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Category Controller for handling category management operations.
+ *
+ * Note: Imported and refactored from todo project
+ * @version 1.0.0
+ */
 @RestController
 @RequestMapping("/api") //http://localhost:9009/api
 public class CategoryController {
