@@ -3,26 +3,30 @@ package com.example.app.service;
 import com.example.app.exception.InformationExistException;
 import com.example.app.exception.InformationNotFoundException;
 import com.example.app.model.Category;
+import com.example.app.model.Habit;
 import com.example.app.model.User;
 import com.example.app.repository.CategoryRepository;
+import com.example.app.repository.HabitRepository;
 import com.example.app.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
- * Represents the Category Service, responsible for handling business logic related to categories.
+ * Represents the Category Service, responsible for handling business logic related to categories.<br>
  * This class serves as an intermediary between the controller and the category repository,
- * invoking the repository to perform CRUD operations on categories.
+ * invoking the repository to perform CRUD operations on categories.<br>
  * Note: Imported and refactored from todo project
- * @version 1.0.0
+ * @version 1.1.0
  */
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final HabitRepository habitRepository;
 
     /**
      * Injects a CategoryRepository dependency automatically.
@@ -30,8 +34,9 @@ public class CategoryService {
      * @param categoryRepository The repository for category-related CRUD operations.
      */
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, HabitRepository habitRepository) {
         this.categoryRepository = categoryRepository;
+        this.habitRepository = habitRepository;
     }
 
     /**
@@ -126,6 +131,18 @@ public class CategoryService {
             categoryRepository.deleteById(categoryId);
             return categoryOptional;
         } else {
+            throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
+        }
+    }
+
+    //--------------------------- Habit related ---------------------------
+    public Habit createCategoryHabit(Long categoryId, Habit habit){
+        try{
+            Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByIdAndUserId(categoryId, getCurrentLoggedInUser().getId()));
+            habit.setCategory(categoryOptional.get());
+            habit.setUser(getCurrentLoggedInUser());
+            return habitRepository.save(habit);
+        } catch (NoSuchElementException e){
             throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
         }
     }

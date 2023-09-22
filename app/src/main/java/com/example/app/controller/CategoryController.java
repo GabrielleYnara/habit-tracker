@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import com.example.app.model.Category;
+import com.example.app.model.Habit;
 import com.example.app.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Category Controller for handling category management operations.
- *
+ * Category Controller for handling category management operations.<br>
  * Note: Imported and refactored from todo project
- * @version 1.0.0
+ * @version 1.1.0
  */
 @RestController
 @RequestMapping("/api") //http://localhost:9009/api
@@ -46,5 +46,11 @@ public class CategoryController {
     @DeleteMapping(path="/categories/{categoryId}/") //http://localhost:9009/api/categories/1/
     public Optional<Category> deleteCategory(@PathVariable(value = "categoryId") Long categoryId){
         return categoryService.deleteCategory(categoryId);
+    }
+
+    //--------------------------- Habit related ---------------------------
+    @PostMapping(path = "/categories/{categoryId}/habits/") //http://localhost:9009/api/categories/1/habits/
+    public Habit createCategoryHabit(@PathVariable(value = "categoryId") Long categoryId, @RequestBody Habit habit){
+        return categoryService.createCategoryHabit(categoryId, habit);
     }
 }
