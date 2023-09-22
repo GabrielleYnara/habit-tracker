@@ -46,19 +46,6 @@ public class CategoryService {
     }
 
     /**
-     * Retrieves all categories from database.
-     * @return A list of all Categories stored in the database.
-     */
-    public List<Category> getAllCategories() {
-        User user = getCurrentLoggedInUser();
-        List<Category> categoryList = user.getCategoryList();
-        if (categoryList.isEmpty()){
-            throw new InformationNotFoundException("No categories found for User id " + user.getId());
-        }
-        return categoryList;
-    }
-
-    /**
      * Creates a Category and saves it in the database.
      * @param category The Category object.
      * @return The category recently created.
@@ -72,5 +59,27 @@ public class CategoryService {
             category.setUser(getCurrentLoggedInUser());
             return categoryRepository.save(category);
         }
+    }
+
+    public Optional<Category> getCategory(Long categoryId){
+        Optional<Category> categoryOptional = Optional.of(categoryRepository.findByIdAndUserId(categoryId, CategoryService.getCurrentLoggedInUser().getId()));
+        if (categoryOptional.isPresent()){
+            return categoryOptional;
+        } else {
+            throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
+        }
+    }
+
+    /**
+     * Retrieves all categories from database.
+     * @return A list of all Categories stored in the database.
+     */
+    public List<Category> getAllCategories() {
+        User user = getCurrentLoggedInUser();
+        List<Category> categoryList = user.getCategoryList();
+        if (categoryList.isEmpty()){
+            throw new InformationNotFoundException("No categories found for User id " + user.getId());
+        }
+        return categoryList;
     }
 }

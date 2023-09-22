@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api") //http://localhost:9009/api
@@ -19,6 +20,10 @@ public class CategoryController {
     @PostMapping(path = "/categories/") //http://localhost:9009/api/categories/
     public Category createCategory(@RequestBody Category categoryObj) {
         return categoryService.createCategory(categoryObj);
+    }
+    @GetMapping(path = "/categories/{categoryId}/") //http://localhost:9009/api/categories/1/
+    public Optional<Category> getCategory(@PathVariable(value = "categoryId") Long categoryId){
+        return categoryService.getCategory(categoryId);
     }
 
     @GetMapping(path = "/categories/") //http://localhost:9009/api/categories/

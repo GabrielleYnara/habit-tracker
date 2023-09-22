@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> { // Entity and primary key data type
     Category findByNameAndUserId(String categoryName, Long userId);
+    Category findByIdAndUserId(Long categoryId, Long userId);
 }
