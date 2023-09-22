@@ -10,11 +10,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * Represents the Category Service, responsible for handling business logic related to categories.
+ *
+ * This class serves as an intermediary between the controller and the category repository,
+ * invoking the repository to perform CRUD operations on categories.
+ *
+ * @version 1.0.0
+ */
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
+    /**
+     * Injects a CategoryRepository dependency automatically.
+     * And enables the service to access the repository's interface methods.
+     * @param categoryRepository The repository for category-related CRUD operations.
+     */
     @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
@@ -30,6 +42,10 @@ public class CategoryService {
         return userDetails.getUser();
     }
 
+    /**
+     * Retrieves all categories from database.
+     * @return A list of all Categories stored in the database.
+     */
     public List<Category> getAllCategories() {
         User user = getCurrentLoggedInUser();
         List<Category> categoryList = user.getCategoryList();
@@ -38,4 +54,5 @@ public class CategoryService {
         }
         return categoryList;
     }
+
 }
