@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 /**
  * Category Controller for handling category management operations.
  *
@@ -30,9 +31,12 @@ public class CategoryController {
     public Optional<Category> getCategory(@PathVariable(value = "categoryId") Long categoryId){
         return categoryService.getCategory(categoryId);
     }
-
     @GetMapping(path = "/categories/") //http://localhost:9009/api/categories/
     public List<Category> getCategories() {
         return categoryService.getAllCategories();
+    }
+    @PutMapping(path = "/categories/{categoryId}") //http://localhost:9009/api/categories/1/
+    public Category updateCategory(@PathVariable(value = "categoryId") Long categoryId, @RequestBody Category category){
+        return categoryService.updateCategory(categoryId, category);
     }
 }

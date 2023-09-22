@@ -90,4 +90,35 @@ public class CategoryService {
         }
         return categoryList;
     }
+
+    /**
+     * Updates a given category.
+     *
+     * @param categoryId A Long value to indicate the category's unique ID.
+     * @param category A Category object containing the updated properties.
+     * @return The updated Category.
+     * @throws InformationExistException If the updated properties are the same as those in the database.
+     * @throws InformationNotFoundException If a category with the given categoryId is not found.
+     */
+    public Category updateCategory(Long categoryId, Category category){
+        Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByIdAndUserId(categoryId, getCurrentLoggedInUser().getId()));
+        if (categoryOptional.isPresent()){ // Category found in db
+            if (category.getName() != null && category.getName().equals(categoryOptional.get().getName()) &&
+                    category.getDescription() != null && category.getDescription().equals(categoryOptional.get().getDescription())){
+                throw new InformationExistException("The category " + category.getName() + " with description " + category.getDescription() + " already exists.");
+            } else {
+                // updates name if not null and different from original
+                if (category.getName() != null && !String.valueOf(categoryOptional.get().getName()).equals(category.getName())){
+                    categoryOptional.get().setName(category.getName());
+                }
+                // updates name if not null and different from original
+                if (category.getDescription() != null && !String.valueOf(categoryOptional.get().getDescription()).equals(category.getDescription())){
+                    categoryOptional.get().setDescription(category.getDescription());
+                }
+                return categoryRepository.save(categoryOptional.get());
+            }
+        } else {
+            throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
+        }
+    }
 }
