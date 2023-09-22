@@ -121,4 +121,14 @@ public class CategoryService {
             throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
         }
     }
+
+    public Optional<Category> deleteCategory(Long categoryId){
+        Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByIdAndUserId(categoryId, getCurrentLoggedInUser().getId()));
+        if (categoryOptional.isPresent()){
+            categoryRepository.deleteById(categoryId);
+            return categoryOptional;
+        } else {
+            throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
+        }
+    }
 }

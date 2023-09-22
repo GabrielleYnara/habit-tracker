@@ -27,16 +27,24 @@ public class CategoryController {
     public Category createCategory(@RequestBody Category categoryObj) {
         return categoryService.createCategory(categoryObj);
     }
+
     @GetMapping(path = "/categories/{categoryId}/") //http://localhost:9009/api/categories/1/
     public Optional<Category> getCategory(@PathVariable(value = "categoryId") Long categoryId){
         return categoryService.getCategory(categoryId);
     }
+
     @GetMapping(path = "/categories/") //http://localhost:9009/api/categories/
     public List<Category> getCategories() {
         return categoryService.getAllCategories();
     }
+
     @PutMapping(path = "/categories/{categoryId}") //http://localhost:9009/api/categories/1/
     public Category updateCategory(@PathVariable(value = "categoryId") Long categoryId, @RequestBody Category category){
         return categoryService.updateCategory(categoryId, category);
+    }
+
+    @DeleteMapping(path="/categories/{categoryId}/") //http://localhost:9009/api/categories/1/
+    public Optional<Category> deleteCategory(@PathVariable(value = "categoryId") Long categoryId){
+        return categoryService.deleteCategory(categoryId);
     }
 }
