@@ -12,7 +12,7 @@ public class Category {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generate sequence of unused values
     @Column
-    private Long Id;
+    private Long id;
     @Column
     private String name;
     @Column
@@ -29,17 +29,17 @@ public class Category {
     }
 
     public Category(Long id, String name, String description) {
-        Id = id;
+        this.id = id;
         this.name = name;
         this.description = description;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public String getName() {
@@ -77,7 +77,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", user=" + user +

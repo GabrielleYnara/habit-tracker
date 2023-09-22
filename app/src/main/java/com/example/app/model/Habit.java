@@ -13,7 +13,7 @@ public class Habit {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generate sequence of unused values
     @Column
-    private Long Id;
+    private Long id;
     @Column
     private String name;
     @Column
@@ -40,7 +40,7 @@ public class Habit {
     }
 
     public Habit(Long id, String name, String trigger, String outcome, String routine, Category category) {
-        Id = id;
+        this.id = id;
         this.name = name;
         this.trigger = trigger;
         this.outcome = outcome;
@@ -49,11 +49,11 @@ public class Habit {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public String getName() {
@@ -107,7 +107,7 @@ public class Habit {
     @Override
     public String toString() {
         return "Habit{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", trigger='" + trigger + '\'' +
                 ", outcome='" + outcome + '\'' +

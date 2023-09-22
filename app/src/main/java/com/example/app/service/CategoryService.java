@@ -1,5 +1,6 @@
 package com.example.app.service;
 
+import com.example.app.exception.InformationExistException;
 import com.example.app.exception.InformationNotFoundException;
 import com.example.app.model.Category;
 import com.example.app.model.User;
@@ -10,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 /**
  * Represents the Category Service, responsible for handling business logic related to categories.
  *
@@ -55,4 +58,13 @@ public class CategoryService {
         return categoryList;
     }
 
+    public Category createCategory(Category category) {
+        Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByNameAndUserId(category.getName(), getCurrentLoggedInUser().getId()));
+        if (categoryOptional.isPresent()) {
+            throw new InformationExistException("Category with name " + category.getName() + " already exists.");
+        } else {
+            category.setUser(getCurrentLoggedInUser());
+            return categoryRepository.save(category);
+        }
+    }
 }

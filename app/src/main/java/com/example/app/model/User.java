@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //generate a sequence of unused Long integer value
     @Column
-    private Long Id;
+    private Long id;
     @Column(unique = true) //validation on SQL side
     private String emailAddress;
     @Column
@@ -33,17 +33,17 @@ public class User {
     }
 
     public User(Long id, String emailAddress, String password) {
-        Id = id;
+        this.id = id;
         this.emailAddress = emailAddress;
         this.password = password;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getEmailAddress() {
@@ -89,7 +89,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", profile=" + profile +
                 '}';
