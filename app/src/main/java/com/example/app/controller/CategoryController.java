@@ -53,4 +53,10 @@ public class CategoryController {
     public Habit createCategoryHabit(@PathVariable(value = "categoryId") Long categoryId, @RequestBody Habit habit){
         return categoryService.createCategoryHabit(categoryId, habit);
     }
+
+    @GetMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9092/api/categories/1/habits/1/
+    public Optional<Habit> getHabit(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "habitId") Long habitId) {
+        return Optional.ofNullable(categoryService.getHabit(categoryId, habitId));
+    }
+    
 }

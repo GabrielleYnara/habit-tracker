@@ -160,4 +160,18 @@ public class CategoryService {
             throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
         }
     }
+
+    public Habit getHabit(Long categoryId, Long habitId){
+        Optional<Category> categoryOptional = getCategory(categoryId);
+        Optional<Habit> habitOptional = categoryOptional
+                .get()
+                .getHabitList()
+                .stream()
+                .filter(habit -> habit.getId() == habitId).findFirst();
+        if(habitOptional.isPresent()) {
+            return habitOptional.get();
+        } else {
+            throw new InformationNotFoundException("habit with id " + habitId + " not found");
+        }
+    }
 }

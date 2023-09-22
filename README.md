@@ -124,7 +124,7 @@ Is a Java-based web application designed to help users manage and track their da
 
 3. **As a logged-in user, I want to edit the details of a given habit track.**
     - The user should be able to input done, date, and/or habit_id.
-        * :warning: The application should show an error if the new information is not different than the original.
+        * :warning: The application should show an error if the new information is not different from the original.
     - The date should be equal to the update’s day or before.
         * :warning: The application should show an error if the date is invalid.
     - The habit track must be previously created.
