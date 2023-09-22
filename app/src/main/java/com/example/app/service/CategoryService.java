@@ -58,6 +58,12 @@ public class CategoryService {
         return categoryList;
     }
 
+    /**
+     * Creates a Category and saves it in the database.
+     * @param category The Category object.
+     * @return The category recently created.
+     * @throws InformationExistException if Category already exists.
+     */
     public Category createCategory(Category category) {
         Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByNameAndUserId(category.getName(), getCurrentLoggedInUser().getId()));
         if (categoryOptional.isPresent()) {

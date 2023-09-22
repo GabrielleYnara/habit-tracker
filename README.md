@@ -156,7 +156,7 @@ The ERD illustrates the relationship between different entities such as `User`, 
 | GET          | `/api/users/profile/`     | `/users/profile/`     | Get the logged-in user's profile            | Implemented           |
 | PUT          | `/api/users/profile/`     | `/users/profile/`     | Update the logged-in user's profile         | Implemented           |
 | GET          | `/api/categories/`        | `/categories/`        | Get all categories for a logged-in user     | Implemented           |
-| POST         | `/api/categories/`        | `/categories/`        | Create a new category for a logged-in user  | Coming Soon           |
+| POST         | `/api/categories/`        | `/categories/`        | Create a new category for a logged-in user  | Implemented           |
 | GET          | `/api/categories/{name}/` | `/categories/{name}/` | Get a category by its name                  | Coming Soon           |
 | PUT          | `/api/categories/{id}/`   | `/categories/{id}/`   | Update a category by its ID                 | Coming Soon           |
 | DELETE       | `/api/categories/{id}/`   | `/categories/{id}/`   | Delete a category by its ID                 | Coming Soon           |
