@@ -136,13 +136,27 @@ public class CategoryService {
     }
 
     //--------------------------- Habit related ---------------------------
+    /**
+     * Creates and saves a Habit associated with the specified category and current user.
+     *
+     * @param categoryId Category's unique ID.
+     * @param habit Habit object to be created.
+     * @return Recently created habit.
+     * @throws InformationNotFoundException If the category is not found.
+     * @throws InformationExistException If a habit with the same name already exists.
+     */
     public Habit createCategoryHabit(Long categoryId, Habit habit){
-        try{
-            Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByIdAndUserId(categoryId, getCurrentLoggedInUser().getId()));
-            habit.setCategory(categoryOptional.get());
-            habit.setUser(getCurrentLoggedInUser());
-            return habitRepository.save(habit);
-        } catch (NoSuchElementException e){
+        Optional<Category> categoryOptional = Optional.ofNullable(categoryRepository.findByIdAndUserId(categoryId, getCurrentLoggedInUser().getId()));
+        if (categoryOptional.isPresent()) {
+            Optional<Habit> habitOptional = Optional.ofNullable(habitRepository.findByName(habit.getName()));
+            if (habitOptional.isEmpty()) {
+                habit.setCategory(categoryOptional.get());
+                habit.setUser(getCurrentLoggedInUser());
+                return habitRepository.save(habit);
+            } else {
+                throw new InformationExistException("Habit " + habit.getName() + " already exists.");
+            }
+        } else {
             throw new InformationNotFoundException("Category with id " + categoryId + " not found.");
         }
     }
