@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * Category Controller for handling category management operations.<br>
  * Note: Imported and refactored from todo project
- * @version 1.1.0
+ * @version 1.3.0
  */
 @RestController
 @RequestMapping("/api") //http://localhost:9009/api

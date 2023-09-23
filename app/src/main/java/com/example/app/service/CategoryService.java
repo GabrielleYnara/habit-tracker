@@ -22,7 +22,7 @@ import java.util.Optional;
  * This class serves as an intermediary between the controller and the category repository,
  * invoking the repository to perform CRUD operations on categories.<br>
  * Note: Imported and refactored from todo project
- * @version 1.1.0
+ * @version 1.2.0
  */
 @Service
 public class CategoryService {

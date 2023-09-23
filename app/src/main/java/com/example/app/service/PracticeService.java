@@ -9,17 +9,37 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class handling business logic related to the practice tracker.
+ * <p>
+ * Acts as an intermediary between the controller and the practice repository, and the category service.
+ * </p>
+ * @version 1.0.0
+ */
 @Service
 public class PracticeService {
     private final PracticeRepository practiceRepository;
     private final CategoryService categoryService;
 
+    /**
+     * Injects dependencies and enables userService to access resources.
+     *
+     * @param practiceRepository Repository for practice-related CRUD operations.
+     * @param categoryService Service for category-related business logic.
+     */
     @Autowired
     public PracticeService(PracticeRepository practiceRepository, CategoryService categoryService) {
         this.practiceRepository = practiceRepository;
         this.categoryService = categoryService;
     }
 
+    /**
+     * Creates a practice associated with given Habit id.
+     *
+     * @param habitId the unique habit Id.
+     * @param practiceTracker PracticeTracker object containing practice details.
+     * @return The recently created practice.
+     */
     public PracticeTracker createPractice(Long habitId, PracticeTracker practiceTracker){
         Optional<Habit> habitOptional = Optional.ofNullable(categoryService.getHabitById(habitId));
         if (habitOptional.isPresent()){
