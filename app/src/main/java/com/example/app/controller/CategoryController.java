@@ -108,4 +108,10 @@ public class CategoryController {
         practice.setId(practiceId);
         return practiceService.updatePractice(practice);
     }
+
+    @DeleteMapping(path = "/practices/{practiceId}/") //http://localhost:9009/api//practices/1/
+    public Optional<PracticeTracker> deletePractice(@PathVariable(value = "practiceId") Long practiceId) {
+        return practiceService.deletePractice(practiceId);
+    }
+
 }

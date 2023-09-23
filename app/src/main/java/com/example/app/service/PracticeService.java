@@ -100,4 +100,14 @@ public class PracticeService {
             throw new InformationNotFoundException("Practice with id " + practice.getId() + "not found.");
         }
     }
+
+    public Optional<PracticeTracker> deletePractice(Long practiceId) {
+        Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practiceId);
+        if (practiceOptional.isPresent()) {
+            practiceRepository.deleteById(practiceId);
+            return practiceOptional;
+        } else {
+            throw new InformationNotFoundException("practice with id " + practiceId + " not found");
+        }
+    }
 }
