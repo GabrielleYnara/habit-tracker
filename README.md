@@ -150,27 +150,27 @@ The ERD illustrates the relationship between different entities such as `User`, 
 ## API Endpoints
 
 | HTTP Methods | Full URL                            | Endpoint URL                    | Functionality                              | Implementation Status |
-|--------------|-------------------------------------|---------------------------------|--------------------------------------------|-----------------------|
-| POST         | `/api/users/register/`              | `/users/register/`              | Register a new user                        | Implemented           |
-| POST         | `/api/users/login/`                 | `/users/login/`                 | Login a registered user                    | Implemented           |
-| GET          | `/api/users/profile/`               | `/users/profile/`               | Get the logged-in user's profile           | Implemented           |
-| PUT          | `/api/users/profile/`               | `/users/profile/`               | Update the logged-in user's profile        | Implemented           |
-| GET          | `/api/categories/`                  | `/categories/`                  | Get all categories for a logged-in user    | Implemented           |
-| POST         | `/api/categories/`                  | `/categories/`                  | Create a new category for a logged-in user | Implemented           |
-| GET          | `/api/categories/{id}/`             | `/categories/{id}/`             | Get a category by its ID                   | Implemented           |
-| PUT          | `/api/categories/{id}/`             | `/categories/{id}/`             | Update a category by its ID                | Implemented           |
-| DELETE       | `/api/categories/{id}/`             | `/categories/{id}/`             | Delete a category by its ID                | Implemented           |
-| GET          | `/api/habits/`                      | `/habits/`                      | Get all habits for a logged-in user        | Implemented           |
-| POST         | `/api/categories/{id}/habits/`      | `/categories/{id}/habits/`      | Create a new habit for a logged-in user    | Implemented           |
-| GET          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Get a habit by its ID                      | Implemented           |
-| PUT          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Update a habit by its ID                   | Implemented           |
-| DELETE       | `/api/categories/{id}/habits/{id}/` | `/categories/{id}/habits/{id}/` | Delete a habit by its ID                   | Implemented           |
-| POST         | `/api/practices/`                   | `/practices/`                   | Register a new practice for a habit        | Coming Soon           |
-| GET          | `/api/practices/{id}/`              | `/practices/{id}/`              | Get practice by ID                         | Coming Soon           |
-| GET          | `/api/practices/{date}/`            | `/practices/{date}/`            | Get all practices for a given date         | Coming Soon           |
-| GET          | `/api/practices/`                   | `/practices/`                   | Get all practices                          | Coming Soon           |
-| PUT          | `/api/practices/{id}/`              | `/practices/{id}/`              | Update a practice by its ID                | Coming Soon           |
-| DELETE       | `/api/practices/{id}/`              | `/practices/{id}/`              | Delete a practice by its ID                | Coming Soon           |
+|--------------|-------------------------------------|---------------------------------|--------------------------------------------|----------------------|
+| POST         | `/api/users/register/`              | `/users/register/`              | Register a new user                        | Implemented          |
+| POST         | `/api/users/login/`                 | `/users/login/`                 | Login a registered user                    | Implemented          |
+| GET          | `/api/users/profile/`               | `/users/profile/`               | Get the logged-in user's profile           | Implemented          |
+| PUT          | `/api/users/profile/`               | `/users/profile/`               | Update the logged-in user's profile        | Implemented          |
+| GET          | `/api/categories/`                  | `/categories/`                  | Get all categories for a logged-in user    | Implemented          |
+| POST         | `/api/categories/`                  | `/categories/`                  | Create a new category for a logged-in user | Implemented          |
+| GET          | `/api/categories/{id}/`             | `/categories/{id}/`             | Get a category by its ID                   | Implemented          |
+| PUT          | `/api/categories/{id}/`             | `/categories/{id}/`             | Update a category by its ID                | Implemented          |
+| DELETE       | `/api/categories/{id}/`             | `/categories/{id}/`             | Delete a category by its ID                | Implemented          |
+| GET          | `/api/habits/`                      | `/habits/`                      | Get all habits for a logged-in user        | Implemented          |
+| POST         | `/api/categories/{id}/habits/`      | `/categories/{id}/habits/`      | Create a new habit for a logged-in user    | Implemented          |
+| GET          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Get a habit by its ID                      | Implemented          |
+| PUT          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Update a habit by its ID                   | Implemented          |
+| DELETE       | `/api/categories/{id}/habits/{id}/` | `/categories/{id}/habits/{id}/` | Delete a habit by its ID                   | Implemented          |
+| POST         | `/api/practices/`                   | `/practices/`                   | Register a new practice for a habit        | Implemented          |
+| GET          | `/api/practices/{id}/`              | `/practices/{id}/`              | Get practice by ID                         | Implemented          |
+| GET          | `/api/practices/{date}/`            | `/practices/{date}/`            | Get all practices for a given date         | Coming Soon          |
+| GET          | `/api/practices/`                   | `/practices/`                   | Get all practices                          | Implemented          |
+| PUT          | `/api/practices/{id}/`              | `/practices/{id}/`              | Update a practice by its ID                | Implemented          |
+| DELETE       | `/api/practices/{id}/`              | `/practices/{id}/`              | Delete a practice by its ID                | Implemented          |
 
 
 ## Installation Instructions

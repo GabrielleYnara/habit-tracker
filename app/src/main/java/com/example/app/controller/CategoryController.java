@@ -6,6 +6,7 @@ import com.example.app.model.PracticeTracker;
 import com.example.app.service.CategoryService;
 import com.example.app.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -92,10 +93,9 @@ public class CategoryController {
         return practiceService.getPracticeById(habitId);
     }
 
-    @GetMapping(path = "/practices/{date}/") //http://localhost:9009/api/practices/2023-09-21/
-    public List<PracticeTracker> getPracticeById(@PathVariable(value = "date") String date){
-        LocalDate localDate = LocalDate.parse(date);
-        return practiceService.getPracticeByDate(localDate);
+    @GetMapping(path = "/practices/date/{date}/") //http://localhost:9009/api/practices/date/2023-09-21/
+    public List<PracticeTracker> getPracticeByDate(@PathVariable(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        return practiceService.getPracticeByDate(date);
     }
     @GetMapping(path = "/practices/") //http://localhost:9009/api/practices/
     public List<PracticeTracker> getAllPractices(){
