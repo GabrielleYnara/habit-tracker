@@ -73,16 +73,28 @@ public class PracticeService {
         }
     }
 
-    public PracticeTracker getPracticeById(Long habitId){
-        Optional<PracticeTracker> practiceOptional = practiceRepository.findById(habitId);
+    /**
+     * Retrieves a practices by given id.
+     * @param practiceId The unique Practice Tracker id.
+     * @return The practice object.
+     * @throws InformationNotFoundException If practice is not found.
+     */
+    public PracticeTracker getPracticeById(Long practiceId){
+        Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practiceId);
 
         if (practiceOptional.isPresent()){
             return practiceOptional.get();
         } else {
-            throw new InformationNotFoundException("Practice with id " + habitId + "not found.");
+            throw new InformationNotFoundException("Practice with id " + practiceId + "not found.");
         }
     }
 
+    /**
+     * Retrieves a list of practices by specified date and associated with the current user.
+     * @param date Target date.
+     * @return A list of practices.
+     * @throws InformationNotFoundException If list is empty.
+     */
     public List<PracticeTracker> getPracticeByDate(LocalDate date){
         List<PracticeTracker> practiceList = practiceRepository.findByDate(date);
         if (practiceList.isEmpty()){
@@ -93,7 +105,8 @@ public class PracticeService {
 
     /**
      * Retrieves a list of practices associated with the current user.
-     * @return list of practices
+     * @return A list of practices.
+     * @throws InformationNotFoundException If list is empty.
      */
     public List<PracticeTracker> getAllPractices(){
         List<PracticeTracker> practiceList = practiceRepository.findByUserId(getCurrentLoggedInUser().getId());
