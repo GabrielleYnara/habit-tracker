@@ -1,6 +1,7 @@
 package com.example.app.service;
 
 import com.example.app.exception.InformationNotFoundException;
+import com.example.app.exception.InformationNotFoundException;
 import com.example.app.model.Habit;
 import com.example.app.model.PracticeTracker;
 import com.example.app.repository.PracticeRepository;
@@ -47,6 +48,9 @@ public class PracticeService {
     public PracticeTracker createPractice(Long habitId, PracticeTracker practiceTracker){
         Optional<Habit> habitOptional = Optional.ofNullable(categoryService.getHabitById(habitId));
         if (habitOptional.isPresent()){
+            if (practiceTracker.getDate().isAfter(LocalDate.now())){
+                throw new IllegalArgumentException("Date must equal or before today's date");
+            }
             practiceTracker.setHabit(habitOptional.get());
             return practiceRepository.save(practiceTracker);
         } else {
@@ -82,6 +86,9 @@ public class PracticeService {
 
     public PracticeTracker updatePractice(PracticeTracker practice) throws IllegalAccessException {
         Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practice.getId());
+        if (practice.getDate().isAfter(LocalDate.now())){
+            throw new IllegalArgumentException("Date must equal or before today's date");
+        }
         if (practiceOptional.isPresent()){
             try {
                 for (Field field : PracticeTracker.class.getDeclaredFields()) { //loop through class fields
