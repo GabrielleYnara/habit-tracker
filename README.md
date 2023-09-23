@@ -1,8 +1,6 @@
 # Habit Tracker
 Is a Java-based web application designed to help users manage and track their daily habits. The application provides a secure platform where users can create and monitor various habits, also categorize them for better focus and analysis.
 
-![Status](https://img.shields.io/badge/Status-Under%20Development-yellow)
-
 ## Approach
 **Initial Planning**: Created a Trello board for project management and drafted an Entity Relation Diagram and User Stories.  
 **Task Breakdown**: Turned User Stories into Trello cards and outlined the required API endpoints.  
@@ -148,33 +146,37 @@ The ERD illustrates the relationship between different entities such as `User`, 
 - **Category**: Allows users to categorize their habits for better management.
 
 ## API Endpoints
-
-| HTTP Methods | Full URL                            | Endpoint URL                    | Functionality                              | Implementation Status |
-|--------------|-------------------------------------|---------------------------------|--------------------------------------------|----------------------|
-| POST         | `/api/users/register/`              | `/users/register/`              | Register a new user                        | Implemented          |
-| POST         | `/api/users/login/`                 | `/users/login/`                 | Login a registered user                    | Implemented          |
-| GET          | `/api/users/profile/`               | `/users/profile/`               | Get the logged-in user's profile           | Implemented          |
-| PUT          | `/api/users/profile/`               | `/users/profile/`               | Update the logged-in user's profile        | Implemented          |
-| GET          | `/api/categories/`                  | `/categories/`                  | Get all categories for a logged-in user    | Implemented          |
-| POST         | `/api/categories/`                  | `/categories/`                  | Create a new category for a logged-in user | Implemented          |
-| GET          | `/api/categories/{id}/`             | `/categories/{id}/`             | Get a category by its ID                   | Implemented          |
-| PUT          | `/api/categories/{id}/`             | `/categories/{id}/`             | Update a category by its ID                | Implemented          |
-| DELETE       | `/api/categories/{id}/`             | `/categories/{id}/`             | Delete a category by its ID                | Implemented          |
-| GET          | `/api/habits/`                      | `/habits/`                      | Get all habits for a logged-in user        | Implemented          |
-| POST         | `/api/categories/{id}/habits/`      | `/categories/{id}/habits/`      | Create a new habit for a logged-in user    | Implemented          |
-| GET          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Get a habit by its ID                      | Implemented          |
-| PUT          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Update a habit by its ID                   | Implemented          |
-| DELETE       | `/api/categories/{id}/habits/{id}/` | `/categories/{id}/habits/{id}/` | Delete a habit by its ID                   | Implemented          |
-| POST         | `/api/practices/`                   | `/practices/`                   | Register a new practice for a habit        | Implemented          |
-| GET          | `/api/practices/{id}/`              | `/practices/{id}/`              | Get practice by ID                         | Implemented          |
-| GET          | `/api/practices/{date}/`            | `/practices/{date}/`            | Get all practices for a given date         | Coming Soon          |
-| GET          | `/api/practices/`                   | `/practices/`                   | Get all practices                          | Implemented          |
-| PUT          | `/api/practices/{id}/`              | `/practices/{id}/`              | Update a practice by its ID                | Implemented          |
-| DELETE       | `/api/practices/{id}/`              | `/practices/{id}/`              | Delete a practice by its ID                | Implemented          |
-
+| HTTP Methods | Full URL                            | Endpoint URL                    | Functionality                              |
+|--------------|-------------------------------------|---------------------------------|--------------------------------------------|
+| POST         | `/api/users/register/`              | `/users/register/`              | Register a new user                        |
+| POST         | `/api/users/login/`                 | `/users/login/`                 | Login a registered user                    |
+| GET          | `/api/users/profile/`               | `/users/profile/`               | Get the logged-in user's profile           |
+| PUT          | `/api/users/profile/`               | `/users/profile/`               | Update the logged-in user's profile        |
+| GET          | `/api/categories/`                  | `/categories/`                  | Get all categories for a logged-in user    |
+| POST         | `/api/categories/`                  | `/categories/`                  | Create a new category for a logged-in user |
+| GET          | `/api/categories/{id}/`             | `/categories/{id}/`             | Get a category by its ID                   |
+| PUT          | `/api/categories/{id}/`             | `/categories/{id}/`             | Update a category by its ID                |
+| DELETE       | `/api/categories/{id}/`             | `/categories/{id}/`             | Delete a category by its ID                |
+| GET          | `/api/habits/`                      | `/habits/`                      | Get all habits for a logged-in user        |
+| POST         | `/api/categories/{id}/habits/`      | `/categories/{id}/habits/`      | Create a new habit for a logged-in user    |
+| GET          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Get a habit by its ID                      |
+| PUT          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Update a habit by its ID                   |
+| DELETE       | `/api/categories/{id}/habits/{id}/` | `/categories/{id}/habits/{id}/` | Delete a habit by its ID                   |
+| POST         | `/api/practices/`                   | `/practices/`                   | Register a new practice for a habit        |
+| GET          | `/api/practices/{id}/`              | `/practices/{id}/`              | Get practice by ID                         |
+| GET          | `/api/practices/date/{date}/`       | `/practices/date/{date}/`       | Get all practices for a given date         |
+| GET          | `/api/practices/`                   | `/practices/`                   | Get all practices                          |
+| PUT          | `/api/practices/{id}/`              | `/practices/{id}/`              | Update a practice by its ID                |
+| DELETE       | `/api/practices/{id}/`              | `/practices/{id}/`              | Delete a practice by its ID                |
 
 ## Installation Instructions
-Coming soon.
+1. Fork and Clone the Repository.
+2. Navigate to the Project Directory, and open it with your IDE (IntelliJ recommended).
+3. Install Dependencies (assuming you're using Maven).
+4. Run the Application.
+5. The application should now be running on `http://localhost:9009/` (or the port you've configured).
+6. Use Postman or another API testing tool to interact with the available endpoints.
+
 
 ## Roadblocks
 
