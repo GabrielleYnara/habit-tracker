@@ -7,6 +7,7 @@ import com.example.app.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class PracticeService {
     private final PracticeRepository practiceRepository;
     private final CategoryService categoryService;
+    private Object newValue;
 
     /**
      * Injects dependencies and enables userService to access resources.
@@ -78,4 +80,24 @@ public class PracticeService {
         return practiceList;
     }
 
+    public PracticeTracker updatePractice(PracticeTracker practice) throws IllegalAccessException {
+        Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practice.getId());
+        if (practiceOptional.isPresent()){
+            try {
+                for (Field field : PracticeTracker.class.getDeclaredFields()) { //loop through class fields
+                    field.setAccessible(true); //make private fields accessible
+                    Object newValue = field.get(practice);
+                    Object originalValue = field.get(practiceOptional.get());
+                    if (newValue != null && !newValue.equals(originalValue)) { //if not null and different from original
+                        field.set(practiceOptional.get(), newValue);
+                    }
+                }
+                return practiceRepository.save(practiceOptional.get());
+            } catch (IllegalArgumentException e){
+                throw new IllegalAccessException(e.getMessage());
+            }
+        } else {
+            throw new InformationNotFoundException("Practice with id " + practice.getId() + "not found.");
+        }
+    }
 }

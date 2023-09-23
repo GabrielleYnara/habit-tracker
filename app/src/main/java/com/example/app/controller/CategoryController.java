@@ -101,4 +101,11 @@ public class CategoryController {
     public List<PracticeTracker> getAllPractices(){
         return practiceService.getAllPractices();
     }
+
+
+    @PutMapping(path = "/practices/{practiceId}") //http://localhost:9009/api/practices/1/
+    public PracticeTracker updatePractice(@PathVariable(value = "practiceId") Long practiceId,@RequestBody PracticeTracker practice) throws IllegalAccessException {
+        practice.setId(practiceId);
+        return practiceService.updatePractice(practice);
+    }
 }

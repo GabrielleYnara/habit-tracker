@@ -66,8 +66,8 @@ public class PracticeTracker {
     public String toString() {
         return "PracticeTracker{" +
                 "id=" + id +
-                ", done=" + done +
-                ", date=" + date +
+                ", done=" + done + '\'' +
+                ", date=" + date + '\'' +
                 ", habit=" + habit +
                 '}';
     }
