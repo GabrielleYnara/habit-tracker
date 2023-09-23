@@ -8,6 +8,7 @@ import com.example.app.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,5 +87,18 @@ public class CategoryController {
     public PracticeTracker createPractice(@PathVariable(value = "habitId") Long habitId, @RequestBody PracticeTracker practiceTracker) {
         return practiceService.createPractice(habitId, practiceTracker);
     }
+    @GetMapping(path = "/practices/{habitId}/") //http://localhost:9009/api/practices/1/
+    public PracticeTracker getPracticeById(@PathVariable(value = "habitId") Long habitId){
+        return practiceService.getPracticeById(habitId);
+    }
 
+    @GetMapping(path = "/practices/{date}/") //http://localhost:9009/api/practices/2023-09-21/
+    public List<PracticeTracker> getPracticeById(@PathVariable(value = "date") String date){
+        LocalDate localDate = LocalDate.parse(date);
+        return practiceService.getPracticeByDate(localDate);
+    }
+    @GetMapping(path = "/practices/") //http://localhost:9009/api/practices/
+    public List<PracticeTracker> getAllPractices(){
+        return practiceService.getAllPractices();
+    }
 }

@@ -61,10 +61,16 @@ public class SeedData implements CommandLineRunner {
         habit.setUser(user);
         habitRepository.save(habit);
 
+        User user2 = new User();
+        user2.setEmailAddress("gabrielle@ymail.com");
+        user2.setPassword(passwordEncoder.encode("gaby1234"));
+        user2.setProfile(new Profile());
+        userRepository.save(user2);
+
         Category category1 = new Category();
         category1.setName("Bed Time");
         category1.setDescription("Habits related to bed routine");
-        category1.setUser(user);
+        category1.setUser(user2);
         categoryRepository.save(category1);
 
         Habit habit1 = new Habit();
@@ -73,7 +79,7 @@ public class SeedData implements CommandLineRunner {
         habit1.setOutcome("Improved self esteem");
         habit1.setRoutine("Every day");
         habit1.setCategory(category1);
-        habit1.setUser(user);
+        habit1.setUser(user2);
         habitRepository.save(habit1);
     }
 

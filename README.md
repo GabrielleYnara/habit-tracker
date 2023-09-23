@@ -166,6 +166,7 @@ The ERD illustrates the relationship between different entities such as `User`, 
 | PUT          | `/api/habits/{id}/`                 | `/habits/{id}/`                 | Update a habit by its ID                   | Implemented           |
 | DELETE       | `/api/categories/{id}/habits/{id}/` | `/categories/{id}/habits/{id}/` | Delete a habit by its ID                   | Implemented           |
 | POST         | `/api/practices/`                   | `/practices/`                   | Register a new practice for a habit        | Coming Soon           |
+| GET          | `/api/practices/{id}/`              | `/practices/{id}/`              | Get practice by ID                         | Coming Soon           |
 | GET          | `/api/practices/{date}/`            | `/practices/{date}/`            | Get all practices for a given date         | Coming Soon           |
 | PUT          | `/api/practices/{id}/`              | `/practices/{id}/`              | Update a practice by its ID                | Coming Soon           |
 | DELETE       | `/api/practices/{id}/`              | `/practices/{id}/`              | Delete a practice by its ID                | Coming Soon           |

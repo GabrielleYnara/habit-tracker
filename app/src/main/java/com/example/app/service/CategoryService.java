@@ -262,4 +262,6 @@ public class CategoryService {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
+
+
 }

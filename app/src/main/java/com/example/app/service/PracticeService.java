@@ -7,6 +7,8 @@ import com.example.app.repository.PracticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -49,4 +51,31 @@ public class PracticeService {
             throw new InformationNotFoundException("Habit with id " + habitId + " not found.");
         }
     }
+
+    public PracticeTracker getPracticeById(Long habitId){
+        Optional<PracticeTracker> practiceOptional = practiceRepository.findById(habitId);
+
+        if (practiceOptional.isPresent()){
+            return practiceOptional.get();
+        } else {
+            throw new InformationNotFoundException("Practice with id " + habitId + "not found.");
+        }
+    }
+
+    public List<PracticeTracker> getPracticeByDate(LocalDate date){
+        List<PracticeTracker> practiceList = practiceRepository.findByDate(date);
+        if (practiceList.isEmpty()){
+            throw new InformationNotFoundException("No practices found on " + date);
+        }
+        return practiceList;
+    }
+
+    public List<PracticeTracker> getAllPractices(){
+        List<PracticeTracker> practiceList = practiceRepository.findAll();
+        if (practiceList.isEmpty()){
+            throw new InformationNotFoundException("No practices found.");
+        }
+        return practiceList;
+    }
+
 }
