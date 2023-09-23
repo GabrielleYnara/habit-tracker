@@ -170,7 +170,7 @@ public class CategoryService {
      * @return Retrieved habit.
      * @throws InformationNotFoundException if the habit is not found.
      */
-    public Habit getHabit(Long categoryId, Long habitId){
+    public Habit getHabitByIdAndCategory(Long categoryId, Long habitId){
         Optional<Category> categoryOptional = getCategory(categoryId);
         Optional<Habit> habitOptional = categoryOptional
                 .get()
@@ -181,6 +181,20 @@ public class CategoryService {
             return habitOptional.get();
         } else {
             throw new InformationNotFoundException("habit with id " + habitId + " not found");
+        }
+    }
+
+    /**
+     * Retrieves a habit by its ID.
+     * @param habitId Habit's unique ID.
+     * @return Retrieved habit.
+     */
+    public Habit getHabitById(Long habitId){
+        Optional<Habit> habitOptional = habitRepository.findById(habitId);
+        if (habitOptional.isPresent()){
+            return habitOptional.get();
+        } else {
+            throw new InformationNotFoundException("Habit with id " + habitId + " not found.");
         }
     }
 
@@ -240,7 +254,7 @@ public class CategoryService {
      * @return The deleted Habit.
      */
     public Optional<Habit> deleteHabit(Long categoryId, Long habitId) {
-        Optional<Habit> habitOptional = Optional.ofNullable(getHabit(categoryId, habitId));
+        Optional<Habit> habitOptional = Optional.ofNullable(getHabitByIdAndCategory(categoryId, habitId));
         if (habitOptional.isPresent()) {
             habitRepository.deleteById(habitId);
             return habitOptional;

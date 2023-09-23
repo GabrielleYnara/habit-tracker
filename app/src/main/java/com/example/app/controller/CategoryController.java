@@ -2,7 +2,9 @@ package com.example.app.controller;
 
 import com.example.app.model.Category;
 import com.example.app.model.Habit;
+import com.example.app.model.PracticeTracker;
 import com.example.app.service.CategoryService;
+import com.example.app.service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +20,14 @@ import java.util.Optional;
 @RequestMapping("/api") //http://localhost:9009/api
 public class CategoryController {
     private CategoryService categoryService;
+    private PracticeService practiceService;
     @Autowired //"Connects" category service class, able to use its methods
     public void setCategoryService(CategoryService categoryService){
         this.categoryService = categoryService;
+    }
+    @Autowired
+    public void setPracticeService(PracticeService practiceService) {
+        this.practiceService = practiceService;
     }
 
     @PostMapping(path = "/categories/") //http://localhost:9009/api/categories/
@@ -56,7 +63,7 @@ public class CategoryController {
 
     @GetMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9009/api/categories/1/habits/1/
     public Optional<Habit> getHabit(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "habitId") Long habitId) {
-        return Optional.ofNullable(categoryService.getHabit(categoryId, habitId));
+        return Optional.ofNullable(categoryService.getHabitByIdAndCategory(categoryId, habitId));
     }
     @GetMapping(path = "/habits/") //http://localhost:9009/api/habits/
     public List<Habit> getAllHabits() {
@@ -72,6 +79,12 @@ public class CategoryController {
     @DeleteMapping(path = "/categories/{categoryId}/habits/{habitId}/") //http://localhost:9009/api/categories/1/habits/1/
     public Optional<Habit> deleteHabit(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "habitId") Long habitId) {
         return categoryService.deleteHabit(categoryId, habitId);
+    }
+    //----------------------------------------- Practice Tracker related -----------------------------------------
+
+    @PostMapping(path = "/habits/{habitId}/practices/") //http://localhost:9009/api/habits/1/practices/
+    public PracticeTracker createPractice(@PathVariable(value = "habitId") Long habitId, @RequestBody PracticeTracker practiceTracker) {
+        return practiceService.createPractice(habitId, practiceTracker);
     }
 
 }

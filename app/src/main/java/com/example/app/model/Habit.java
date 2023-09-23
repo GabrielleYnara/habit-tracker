@@ -104,6 +104,14 @@ public class Habit {
         this.category = category;
     }
 
+    public List<PracticeTracker> getPracticeTrackerList() {
+        return practiceTrackerList;
+    }
+
+    public void setPracticeTrackerList(List<PracticeTracker> practiceTrackerList) {
+        this.practiceTrackerList = practiceTrackerList;
+    }
+
     @Override
     public String toString() {
         return "Habit{" +
