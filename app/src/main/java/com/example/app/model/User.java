@@ -29,6 +29,10 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Habit> habitList;
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<PracticeTracker> practiceList;
+
     public User() {
     }
 
@@ -84,6 +88,14 @@ public class User {
 
     public void setHabitList(List<Habit> habitList) {
         this.habitList = habitList;
+    }
+
+    public List<PracticeTracker> getPracticeList() {
+        return practiceList;
+    }
+
+    public void setPracticeList(List<PracticeTracker> practiceList) {
+        this.practiceList = practiceList;
     }
 
     @Override

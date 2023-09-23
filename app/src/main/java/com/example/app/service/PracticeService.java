@@ -4,14 +4,18 @@ import com.example.app.exception.InformationNotFoundException;
 import com.example.app.exception.InformationNotFoundException;
 import com.example.app.model.Habit;
 import com.example.app.model.PracticeTracker;
+import com.example.app.model.User;
 import com.example.app.repository.PracticeRepository;
+import com.example.app.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Service class handling business logic related to the practice tracker.
@@ -24,7 +28,7 @@ import java.util.Optional;
 public class PracticeService {
     private final PracticeRepository practiceRepository;
     private final CategoryService categoryService;
-    private Object newValue;
+    Logger logger = Logger.getLogger(PracticeTracker.class.getName());
 
     /**
      * Injects dependencies and enables userService to access resources.
@@ -36,6 +40,16 @@ public class PracticeService {
     public PracticeService(PracticeRepository practiceRepository, CategoryService categoryService) {
         this.practiceRepository = practiceRepository;
         this.categoryService = categoryService;
+    }
+
+    /**
+     * Extracts usr information from context holder
+     * @return User object
+     */
+    public static User getCurrentLoggedInUser(){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder //After jwt is generated, Security Context Holder is created to hold the user's state
+                .getContext().getAuthentication().getPrincipal(); // the entire User object, with authentication details
+        return userDetails.getUser();
     }
 
     /**
@@ -51,6 +65,7 @@ public class PracticeService {
             if (practiceTracker.getDate().isAfter(LocalDate.now())){
                 throw new IllegalArgumentException("Date must equal or before today's date");
             }
+            practiceTracker.setUser(getCurrentLoggedInUser());
             practiceTracker.setHabit(habitOptional.get());
             return practiceRepository.save(practiceTracker);
         } else {
@@ -76,14 +91,26 @@ public class PracticeService {
         return practiceList;
     }
 
+    /**
+     * Retrieves a list of practices associated with the current user.
+     * @return list of practices
+     */
     public List<PracticeTracker> getAllPractices(){
-        List<PracticeTracker> practiceList = practiceRepository.findAll();
+        List<PracticeTracker> practiceList = practiceRepository.findByUserId(getCurrentLoggedInUser().getId());
         if (practiceList.isEmpty()){
             throw new InformationNotFoundException("No practices found.");
         }
         return practiceList;
     }
 
+    /**
+     * Updates the specified fields of a given practice using Java Reflection.
+     * <p>
+     * Only the necessary fields of the class are updated.
+     * </p>
+     * @param practice Practice Tracker object with the updated properties.
+     * @return The updated object.
+     */
     public PracticeTracker updatePractice(PracticeTracker practice) throws IllegalAccessException {
         Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practice.getId());
         if (practice.getDate().isAfter(LocalDate.now())){
@@ -108,6 +135,13 @@ public class PracticeService {
         }
     }
 
+    /**
+     * Deletes the practice tracker specified by the given id.
+     *
+     * @param practiceId The unique Practice Tracker Id.
+     * @return The deleted Practice.
+     * @throws InformationNotFoundException If practice is not found.
+     */
     public Optional<PracticeTracker> deletePractice(Long practiceId) {
         Optional<PracticeTracker> practiceOptional = practiceRepository.findById(practiceId);
         if (practiceOptional.isPresent()) {

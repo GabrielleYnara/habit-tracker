@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface PracticeRepository extends JpaRepository<PracticeTracker, Long> {
     List<PracticeTracker> findByDate(LocalDate date);
+    List<PracticeTracker> findByUserId(Long userId);
 }

@@ -19,6 +19,10 @@ public class PracticeTracker {
     @ManyToOne
     @JoinColumn(name = "habit_id")
     private Habit habit;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public PracticeTracker() {
     }
@@ -62,13 +66,22 @@ public class PracticeTracker {
         this.habit = habit;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "PracticeTracker{" +
                 "id=" + id +
-                ", done=" + done + '\'' +
-                ", date=" + date + '\'' +
+                ", done=" + done +
+                ", date=" + date +
                 ", habit=" + habit +
+                ", user=" + user +
                 '}';
     }
 }
